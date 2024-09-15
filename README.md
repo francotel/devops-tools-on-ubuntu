@@ -41,3 +41,24 @@ You can customize the script to include or exclude specific tools as per your ne
 
    ```bash
    git clone https://github.com/your-username/devops-tools-on-ubuntu.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd devops-tools-on-ubuntu
+   ```
+
+3. Make the script executable:
+
+   ```bash
+   chmod +x install-tools.sh
+   ```
+
+4. Run the script to install the tools:
+
+   ```bash
+   sudo ./install-tools.sh
+   ```
+
+The script will take care of installing the necessary packages and dependencies.
