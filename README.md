@@ -62,3 +62,19 @@ You can customize the script to include or exclude specific tools as per your ne
    ```
 
 The script will take care of installing the necessary packages and dependencies.
+
+## 🏃 Usage
+
+Once the script has finished running, the DevOps tools will be installed and ready for use. You can start using them as per your project's requirements.
+
+For example:
+
+To check Docker's installation: docker --version
+To verify Ansible: ansible --version
+To confirm Terraform: terraform --version
+
+Feel free to modify the script if you want to add more tools or tweak the installation process for your specific setup.
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request with improvements, new features, or bug fixes.
