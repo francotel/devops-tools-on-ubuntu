@@ -1,0 +1,25 @@
+# Vagrantfile
+
+Vagrant.configure("2") do |config|
+    # Define la caja base que se usará (Ubuntu 20.04 en este caso)
+    config.vm.box = "ubuntu/focal64"
+  
+    # Configura la red y los recursos de la máquina virtual
+    config.vm.network "forwarded_port", guest: 22, host: 2222 # SSH
+    config.vm.network "forwarded_port", guest: 80, host: 8080 # HTTP
+  
+    # Configura el script de provisión
+    config.vm.provision "shell", inline: <<-SHELL
+      # Actualiza la lista de paquetes e instala actualizaciones
+      sudo apt update && sudo apt upgrade -y
+  
+      # Instala Git
+      sudo apt install -y git
+  
+      # Clona el repositorio
+      git clone https://github.com/francotel/devops-tools-on-ubuntu.git /home/vagrant/devops-tools-on-ubuntu
+  
+      echo "Repositorio clonado en /home/vagrant/devops-tools-on-ubuntu"
+    SHELL
+  end
+  
