@@ -118,7 +118,12 @@ Run the installation script manually:
    chmod +x install-tools.sh
    sudo ./install-tools.sh
    ```
+6. Destroy Vagrant
 
+    ```bash
+    vagrant destroy
+    ```
+    
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request with improvements, new features, or bug fixes.
