@@ -80,3 +80,13 @@ Feel free to modify the script if you want to add more tools or tweak the instal
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request with improvements, new features, or bug fixes.
+
+##  🤝 **Let's Connect!**
+
+If you find this repository useful and want to see more content like this, follow me on LinkedIn to stay updated on more projects and resources!
+
+[![LinkedIn](https://seeklogo.com/images/L/linkedin-logo-E871D8437B-seeklogo.com.png)](https://www.linkedin.com/in/franconavarro/)
+
+If you’d like to support my work, you can buy me a coffee. Thank you for your support!
+
+[![BuyMeACoffee](https://cdn.icon-icons.com/icons2/2699/PNG/512/buymeacoffee_official_logo_icon_169440.png)](https://www.buymeacoffee.com/francotel)
