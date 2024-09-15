@@ -78,6 +78,47 @@ To confirm Terraform: terraform --version
 
 Feel free to modify the script if you want to add more tools or tweak the installation process for your specific setup.
 
+## 🏗️ Vagrant Setup
+
+If you want to use Vagrant to set up an Ubuntu virtual machine and clone this repository, follow these steps:
+
+1. **Clone this repository to your local machine:**
+
+   ```bash
+   git clone https://github.com/your-username/devops-tools-on-ubuntu.git
+   ```
+2. Navigate to the project directory:
+
+   ```bash
+   cd devops-tools-on-ubuntu
+   ```
+
+3. Run Vagrant to set up the virtual machine:
+
+   ```bash
+   vagrant up
+   ```
+This command will set up the Ubuntu VM, install Git, and clone the repository.
+
+4. SSH into the VM:
+
+   ```bash
+   vagrant ssh
+   ```
+
+5. Once inside the VM, navigate to the directory where the repository was cloned:
+
+   ```bash
+   cd /home/vagrant/devops-tools-on-ubuntu
+   ```
+
+Run the installation script manually:
+
+   ```bash
+   chmod +x install-tools.sh
+   sudo ./install-tools.sh
+   ```
+
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request with improvements, new features, or bug fixes.
