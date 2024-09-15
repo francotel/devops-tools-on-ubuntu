@@ -31,10 +31,24 @@ echo ""
 
 # Function to install Docker
 install_docker() {
-    sudo apt update
-    sudo apt install -y docker-ce docker-ce-cli containerd.io
+    # sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+    sudo apt-get install ca-certificates curl
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+    # Add the repository to Apt sources:
+    echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+    # Start and enable Docker
     sudo systemctl start docker
     sudo systemctl enable docker
+
     echo "Docker installed successfully."
 }
 
@@ -55,8 +69,9 @@ install_ansible() {
 
 # Function to install Terraform
 install_terraform() {
-    curl -LO https://releases.hashicorp.com/terraform/1.9.0/terraform_1.9.0_linux_amd64.zip
-    unzip terraform_1.9.0_linux_amd64.zip
+    sudo apt install zip -y
+    sudo curl -LO https://releases.hashicorp.com/terraform/1.9.0/terraform_1.9.0_linux_amd64.zip
+    sudo unzip terraform_1.9.0_linux_amd64.zip
     sudo mv terraform /usr/local/bin/
     rm terraform_1.9.0_linux_amd64.zip
     echo "Terraform installed successfully."
@@ -75,6 +90,7 @@ install_jenkins() {
 
 # Function to install AWS CLI
 install_awscli() {
+    sudo apt install zip -y
     curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
     unzip awscliv2.zip
     sudo ./aws/install
