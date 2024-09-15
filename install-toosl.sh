@@ -58,14 +58,14 @@ install_docker() {
 
 # Function to install k9s
 install_k9s() {
-    curl -sS https://webinstall.dev/k9s | bash
+    sudo curl -sS https://webinstall.dev/k9s | bash
     sudo mv k9s /usr/local/bin/
     echo "k9s installed successfully."
 }
 
 # Function to install minikube
 install_minikube() {
-    curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    sudo curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
     sudo install minikube-linux-amd64 /usr/local/bin/minikube
     rm minikube-linux-amd64
     echo "minikube installed successfully."
@@ -73,7 +73,7 @@ install_minikube() {
 
 # Function to install k3s
 install_k3s() {
-    curl -sfL https://get.k3s.io | sh -
+    sudo curl -sfL https://get.k3s.io | sh -
     echo "k3s installed successfully."
 }
 
@@ -131,7 +131,7 @@ install_azurecli() {
 
 # Function to install Google Cloud SDK
 install_gcloud() {
-    curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-419.0.0-linux-x86_64.tar.gz
+    sudo curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-455.0.0-linux-x86_64.tar.gz
     tar -xvzf google-cloud-sdk-419.0.0-linux-x86_64.tar.gz
     ./google-cloud-sdk/install.sh
     echo "Google Cloud SDK installed successfully."
@@ -139,9 +139,10 @@ install_gcloud() {
 
 # Function to install Helm
 install_helm() {
-    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-    chmod 700 get_helm.sh
+    sudo curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+    sudo chmod 700 get_helm.sh
     ./get_helm.sh
+    sudo rm -f get_helm.sh
     echo "Helm installed successfully."
 }
 
@@ -174,6 +175,7 @@ install_gitlab_runner() {
 
 # Function to install HashiCorp Vault
 install_vault() {
+    sudo apt install zip -y
     curl -LO https://releases.hashicorp.com/vault/1.17.0/vault_1.17.0_linux_amd64.zip
     sudo unzip vault_1.17.0_linux_amd64.zip
     sudo mv vault /usr/local/bin/
@@ -183,6 +185,7 @@ install_vault() {
 
 # Function to install HashiCorp Consul
 install_consul() {
+    sudo apt install zip -y
     curl -LO https://releases.hashicorp.com/consul/1.19.2/consul_1.19.2_linux_amd64.zip
     sudo unzip consul_1.19.2_linux_amd64.zip
     sudo mv consul /usr/local/bin/
