@@ -10,11 +10,11 @@ Vagrant.configure("2") do |config|
   
     # Configura el script de provisión
     config.vm.provision "shell", inline: <<-SHELL
-      # Actualiza la lista de paquetes e instala actualizaciones
-      sudo apt update && sudo apt upgrade -y
+    #   # Actualiza la lista de paquetes e instala actualizaciones
+    #   sudo apt update && sudo apt upgrade -y
   
-      # Instala Git
-      sudo apt install -y git
+    #   # Instala Git
+    #   sudo apt install -y git
   
       # Clona el repositorio
       git clone https://github.com/francotel/devops-tools-on-ubuntu.git /home/vagrant/devops-tools-on-ubuntu

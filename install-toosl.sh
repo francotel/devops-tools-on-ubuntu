@@ -9,6 +9,9 @@ echo "#        Automate the installation of essential DevOps tools on Ubuntu    
 echo "#                                                                          #"
 echo "############################################################################"
 echo ""
+echo "Automate the installation of essential DevOps tools on your Ubuntu machine."
+echo "Choose from a wide range of tools and get started quickly and easily."
+echo ""
 echo "Tools available for installation:"
 echo "  - Docker 🐳"
 echo "  - Kubernetes (kubectl) ☸️"
@@ -37,7 +40,7 @@ install_docker() {
 
 # Function to install Kubernetes (kubectl)
 install_kubernetes() {
-    curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+    curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
     chmod +x ./kubectl
     sudo mv ./kubectl /usr/local/bin/kubectl
     echo "Kubernetes (kubectl) installed successfully."
@@ -52,10 +55,10 @@ install_ansible() {
 
 # Function to install Terraform
 install_terraform() {
-    curl -LO https://releases.hashicorp.com/terraform/1.5.0/terraform_1.5.0_linux_amd64.zip
-    unzip terraform_1.5.0_linux_amd64.zip
+    curl -LO https://releases.hashicorp.com/terraform/1.6.0/terraform_1.6.0_linux_amd64.zip
+    unzip terraform_1.6.0_linux_amd64.zip
     sudo mv terraform /usr/local/bin/
-    rm terraform_1.5.0_linux_amd64.zip
+    rm terraform_1.6.0_linux_amd64.zip
     echo "Terraform installed successfully."
 }
 
@@ -87,8 +90,8 @@ install_azurecli() {
 
 # Function to install Google Cloud SDK
 install_gcloud() {
-    curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-446.0.0-linux-x86_64.tar.gz
-    tar -xvzf google-cloud-sdk-446.0.0-linux-x86_64.tar.gz
+    curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-419.0.0-linux-x86_64.tar.gz
+    tar -xvzf google-cloud-sdk-419.0.0-linux-x86_64.tar.gz
     ./google-cloud-sdk/install.sh
     echo "Google Cloud SDK installed successfully."
 }
@@ -103,10 +106,10 @@ install_helm() {
 
 # Function to install Prometheus
 install_prometheus() {
-    curl -LO https://github.com/prometheus/prometheus/releases/download/v2.26.0/prometheus-2.26.0.linux-amd64.tar.gz
-    tar xvf prometheus-2.26.0.linux-amd64.tar.gz
-    sudo mv prometheus-2.26.0.linux-amd64 /usr/local/bin/prometheus
-    rm prometheus-2.26.0.linux-amd64.tar.gz
+    curl -LO https://github.com/prometheus/prometheus/releases/download/v2.47.0/prometheus-2.47.0.linux-amd64.tar.gz
+    tar xvf prometheus-2.47.0.linux-amd64.tar.gz
+    sudo mv prometheus-2.47.0.linux-amd64 /usr/local/bin/prometheus
+    rm prometheus-2.47.0.linux-amd64.tar.gz
     echo "Prometheus installed successfully."
 }
 
@@ -130,36 +133,75 @@ install_gitlab_runner() {
 
 # Function to install HashiCorp Vault
 install_vault() {
-    curl -LO https://releases.hashicorp.com/vault/1.10.0/vault_1.10.0_linux_amd64.zip
-    unzip vault_1.10.0_linux_amd64.zip
+    curl -LO https://releases.hashicorp.com/vault/1.13.0/vault_1.13.0_linux_amd64.zip
+    unzip vault_1.13.0_linux_amd64.zip
     sudo mv vault /usr/local/bin/
-    rm vault_1.10.0_linux_amd64.zip
+    rm vault_1.13.0_linux_amd64.zip
     echo "HashiCorp Vault installed successfully."
 }
 
 # Function to install HashiCorp Consul
 install_consul() {
-    curl -LO https://releases.hashicorp.com/consul/1.14.0/consul_1.14.0_linux_amd64.zip
-    unzip consul_1.14.0_linux_amd64.zip
+    curl -LO https://releases.hashicorp.com/consul/1.14.2/consul_1.14.2_linux_amd64.zip
+    unzip consul_1.14.2_linux_amd64.zip
     sudo mv consul /usr/local/bin/
-    rm consul_1.14.0_linux_amd64.zip
+    rm consul_1.14.2_linux_amd64.zip
     echo "HashiCorp Consul installed successfully."
 }
 
-# Main script execution
-install_docker
-install_kubernetes
-install_ansible
-install_terraform
-install_jenkins
-install_awscli
-install_azurecli
-install_gcloud
-install_helm
-install_prometheus
-install_grafana
-install_gitlab_runner
-install_vault
-install_consul
+# Function to install all tools
+install_all() {
+    install_docker
+    install_kubernetes
+    install_ansible
+    install_terraform
+    install_jenkins
+    install_awscli
+    install_azurecli
+    install_gcloud
+    install_helm
+    install_prometheus
+    install_grafana
+    install_gitlab_runner
+    install_vault
+    install_consul
+    echo "All tools installed successfully."
+}
 
-echo "All tools installed successfully!"
+# Main menu
+echo "Please select an option:"
+echo "1. Install Docker"
+echo "2. Install Kubernetes (kubectl)"
+echo "3. Install Ansible"
+echo "4. Install Terraform"
+echo "5. Install Jenkins"
+echo "6. Install AWS CLI"
+echo "7. Install Azure CLI"
+echo "8. Install Google Cloud SDK"
+echo "9. Install Helm"
+echo "10. Install Prometheus"
+echo "11. Install Grafana"
+echo "12. Install GitLab Runner"
+echo "13. Install HashiCorp Vault"
+echo "14. Install HashiCorp Consul"
+echo "15. Install ALL tools"
+read -p "Enter the number corresponding to your choice: " tool_choice
+
+case $tool_choice in
+    1) install_docker ;;
+    2) install_kubernetes ;;
+    3) install_ansible ;;
+    4) install_terraform ;;
+    5) install_jenkins ;;
+    6) install_awscli ;;
+    7) install_azurecli ;;
+    8) install_gcloud ;;
+    9) install_helm ;;
+    10) install_prometheus ;;
+    11) install_grafana ;;
+    12) install_gitlab_runner ;;
+    13) install_vault ;;
+    14) install_consul ;;
+    15) install_all ;;
+    *) echo "Invalid choice, exiting." ;;
+esac
