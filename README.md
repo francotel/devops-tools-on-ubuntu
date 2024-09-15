@@ -9,6 +9,7 @@ Welcome to **DevOps Tools on Ubuntu**, a script that automates the installation 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Vagrant Setup](#vagrant-setup)
 - [Contributing](#contributing)
 - [License](#license)
 
