@@ -27,12 +27,16 @@ echo "  - Grafana 📊"
 echo "  - GitLab Runner 🏃‍♂️"
 echo "  - HashiCorp Vault 🔐"
 echo "  - HashiCorp Consul 🌐"
+echo "  - Infracost 💰"
+echo "  - k9s 👀"
+echo "  - minikube 🏗️"
+echo "  - k3s 🐍"
 echo ""
 
 # Function to install Docker
 install_docker() {
     # sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-    sudo apt-get install ca-certificates curl
+    sudo apt-get install ca-certificates curl -y
     sudo install -m 0755 -d /etc/apt/keyrings
     sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -43,13 +47,34 @@ install_docker() {
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
     sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt-get update
-    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
     # Start and enable Docker
     sudo systemctl start docker
     sudo systemctl enable docker
 
     echo "Docker installed successfully."
+}
+
+# Function to install k9s
+install_k9s() {
+    curl -sS https://webinstall.dev/k9s | bash
+    sudo mv k9s /usr/local/bin/
+    echo "k9s installed successfully."
+}
+
+# Function to install minikube
+install_minikube() {
+    curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    sudo install minikube-linux-amd64 /usr/local/bin/minikube
+    rm minikube-linux-amd64
+    echo "minikube installed successfully."
+}
+
+# Function to install k3s
+install_k3s() {
+    curl -sfL https://get.k3s.io | sh -
+    echo "k3s installed successfully."
 }
 
 # Function to install Kubernetes (kubectl)
@@ -149,20 +174,27 @@ install_gitlab_runner() {
 
 # Function to install HashiCorp Vault
 install_vault() {
-    curl -LO https://releases.hashicorp.com/vault/1.13.0/vault_1.13.0_linux_amd64.zip
-    unzip vault_1.13.0_linux_amd64.zip
+    curl -LO https://releases.hashicorp.com/vault/1.17.0/vault_1.17.0_linux_amd64.zip
+    sudo unzip vault_1.17.0_linux_amd64.zip
     sudo mv vault /usr/local/bin/
-    rm vault_1.13.0_linux_amd64.zip
+    rm vault_1.17.0_linux_amd64.zip
     echo "HashiCorp Vault installed successfully."
 }
 
 # Function to install HashiCorp Consul
 install_consul() {
-    curl -LO https://releases.hashicorp.com/consul/1.14.2/consul_1.14.2_linux_amd64.zip
-    unzip consul_1.14.2_linux_amd64.zip
+    curl -LO https://releases.hashicorp.com/consul/1.19.2/consul_1.19.2_linux_amd64.zip
+    sudo unzip consul_1.19.2_linux_amd64.zip
     sudo mv consul /usr/local/bin/
-    rm consul_1.14.2_linux_amd64.zip
+    rm consul_1.19.2_linux_amd64.zip
     echo "HashiCorp Consul installed successfully."
+}
+
+# Function to install Infracost
+install_infracost() {
+    echo "Installing Infracost..."
+    curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
+    echo "Infracost installed successfully."
 }
 
 # Function to install all tools
@@ -181,6 +213,10 @@ install_all() {
     install_gitlab_runner
     install_vault
     install_consul
+    install_infracost
+    install_k9s
+    install_minikube
+    install_k3s
     echo "All tools installed successfully."
 }
 
@@ -200,7 +236,11 @@ echo "11. Install Grafana"
 echo "12. Install GitLab Runner"
 echo "13. Install HashiCorp Vault"
 echo "14. Install HashiCorp Consul"
-echo "15. Install ALL tools"
+echo "15. Install Infracost"
+echo "16. Install k9s"
+echo "17. Install minikube"
+echo "18. Install k3s"
+echo "19. Install ALL tools"
 read -p "Enter the number corresponding to your choice: " tool_choice
 
 case $tool_choice in
@@ -218,6 +258,10 @@ case $tool_choice in
     12) install_gitlab_runner ;;
     13) install_vault ;;
     14) install_consul ;;
-    15) install_all ;;
+    15) install_infracost ;;
+    16) install_k9s ;;
+    17) install_minikube ;;
+    18) install_k3s ;;
+    19) install_all ;;
     *) echo "Invalid choice, exiting." ;;
 esac
