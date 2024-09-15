@@ -69,9 +69,11 @@ Once the script has finished running, the DevOps tools will be installed and rea
 
 For example:
 
+   ```bash
 To check Docker's installation: docker --version
 To verify Ansible: ansible --version
 To confirm Terraform: terraform --version
+   ```
 
 Feel free to modify the script if you want to add more tools or tweak the installation process for your specific setup.
 
