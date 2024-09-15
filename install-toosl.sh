@@ -77,12 +77,12 @@ install_k3s() {
     echo "k3s installed successfully."
 }
 
-# Function to install Kubernetes (kubectl)
-install_kubernetes() {
-    curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+# Function to install kubectl
+install_kubectl() {
+    curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
     chmod +x ./kubectl
     sudo mv ./kubectl /usr/local/bin/kubectl
-    echo "Kubernetes (kubectl) installed successfully."
+    echo "kubectl installed successfully."
 }
 
 # Function to install Ansible
@@ -200,7 +200,7 @@ install_infracost() {
 # Function to install all tools
 install_all() {
     install_docker
-    install_kubernetes
+    install_kubectl
     install_ansible
     install_terraform
     install_jenkins
@@ -245,7 +245,7 @@ read -p "Enter the number corresponding to your choice: " tool_choice
 
 case $tool_choice in
     1) install_docker ;;
-    2) install_kubernetes ;;
+    2) install_kubectl ;;
     3) install_ansible ;;
     4) install_terraform ;;
     5) install_jenkins ;;
