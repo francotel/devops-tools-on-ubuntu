@@ -49,8 +49,6 @@ install_vscodium() {
 
 # Function to install Docker
 install_docker() {
-    # sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-    sudo apt-get install ca-certificates curl -y
     sudo install -m 0755 -d /etc/apt/keyrings
     sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -111,7 +109,7 @@ install_terraform() {
     sudo curl -LO https://releases.hashicorp.com/terraform/1.9.0/terraform_1.9.0_linux_amd64.zip
     sudo unzip terraform_1.9.0_linux_amd64.zip
     sudo mv terraform /usr/local/bin/
-    rm -f terraform_1.9.0_linux_amd64.zip
+    sudo rm -f terraform_1.9.0_linux_amd64.zip
     echo "Terraform installed successfully."
 }
 
