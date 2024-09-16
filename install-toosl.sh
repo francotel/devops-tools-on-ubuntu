@@ -30,8 +30,20 @@ echo "  - HashiCorp Consul 🌐"
 echo "  - Infracost 💰"
 echo "  - k9s 👀"
 echo "  - minikube 🏗️"
+echo "  - VS Codium 🗒️"
 echo "  - k3s 🐍"
 echo ""
+
+# Function to VSCodium
+install_vscodium() {
+    wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+    | gpg --dearmor \
+    | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+    echo 'deb [signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg] https://download.vscodium.com/debs vscodium main' \
+    | sudo tee /etc/apt/sources.list.d/vscodium.list
+    sudo apt update && sudo apt install -y codium
+    echo "VSCodium installed successfully."
+}
 
 # Function to install Docker
 install_docker() {
@@ -79,8 +91,8 @@ install_k3s() {
 
 # Function to install kubectl
 install_kubectl() {
-    curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
-    chmod +x ./kubectl
+    sudo curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+    sudo chmod +x ./kubectl
     sudo mv ./kubectl /usr/local/bin/kubectl
     echo "kubectl installed successfully."
 }
@@ -176,7 +188,7 @@ install_gitlab_runner() {
 # Function to install HashiCorp Vault
 install_vault() {
     sudo apt install zip -y
-    curl -LO https://releases.hashicorp.com/vault/1.17.0/vault_1.17.0_linux_amd64.zip
+    sudo curl -LO https://releases.hashicorp.com/vault/1.17.0/vault_1.17.0_linux_amd64.zip
     sudo unzip vault_1.17.0_linux_amd64.zip
     sudo mv vault /usr/local/bin/
     rm vault_1.17.0_linux_amd64.zip
@@ -186,7 +198,7 @@ install_vault() {
 # Function to install HashiCorp Consul
 install_consul() {
     sudo apt install zip -y
-    curl -LO https://releases.hashicorp.com/consul/1.19.2/consul_1.19.2_linux_amd64.zip
+    sudo curl -LO https://releases.hashicorp.com/consul/1.19.2/consul_1.19.2_linux_amd64.zip
     sudo unzip consul_1.19.2_linux_amd64.zip
     sudo mv consul /usr/local/bin/
     rm consul_1.19.2_linux_amd64.zip
@@ -202,6 +214,7 @@ install_infracost() {
 
 # Function to install all tools
 install_all() {
+    install_vscodium
     install_docker
     install_kubectl
     install_ansible
@@ -243,7 +256,8 @@ echo "15. Install Infracost"
 echo "16. Install k9s"
 echo "17. Install minikube"
 echo "18. Install k3s"
-echo "19. Install ALL tools"
+echo "19. Install VSCodium"
+echo "20. Install ALL tools"
 read -p "Enter the number corresponding to your choice: " tool_choice
 
 case $tool_choice in
@@ -265,6 +279,7 @@ case $tool_choice in
     16) install_k9s ;;
     17) install_minikube ;;
     18) install_k3s ;;
-    19) install_all ;;
+    19) install_vscodium ;;
+    20) install_all ;;
     *) echo "Invalid choice, exiting." ;;
 esac
