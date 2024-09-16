@@ -13,25 +13,51 @@ echo "Automate the installation of essential DevOps tools on your Ubuntu machine
 echo "Choose from a wide range of tools and get started quickly and easily."
 echo ""
 echo "Tools available for installation:"
-echo "  - Docker 🐳"
-echo "  - Kubernetes (kubectl) ☸️"
-echo "  - Ansible 📜"
-echo "  - Terraform 🌍"
-echo "  - Jenkins 🏗️"
-echo "  - AWS CLI ☁️"
-echo "  - Azure CLI ☁️"
-echo "  - Google Cloud SDK ☁️"
-echo "  - Helm ⛵"
-echo "  - GitLab Runner 🏃‍♂️"
-echo "  - HashiCorp Vault 🔐"
-echo "  - HashiCorp Consul 🌐"
-echo "  - Infracost 💰"
-echo "  - k9s 👀"
-echo "  - minikube 🏗️"
-echo "  - VS Codium 🗒️"
-echo "  - Postman 📮"
-echo "  - k3s 🐍"
-echo ""
+echo " 1 - Docker 🐳"
+echo " 2 - Kubernetes (kubectl) ☸️"
+echo " 3 - Ansible 📜"
+echo " 4 - Terraform 🌍"
+echo " 5 - Jenkins 🏗️"
+echo " 6 - AWS CLI ☁️"
+echo " 7 - Azure CLI ☁️"
+echo " 8 - Google Cloud SDK ☁️"
+echo " 9 - Helm ⛵"
+echo " 10 - GitLab Runner 🏃‍♂️"
+echo " 11 - HashiCorp Vault 🔐"
+echo " 12 - HashiCorp Consul 🌐"
+echo " 13 - HashiCorp Packer 💿"
+echo " 14 - Infracost 💰"
+echo " 15 - k9s 👀"
+echo " 16 - minikube 🏗️"
+echo " 17 - k3s 🐍"
+echo " 18 - VS Codium 🗒️"
+echo " 19 - Postman 📮"
+echo " 20 - Install ALL tools"
+read -p "Enter the number corresponding to your choice: " tool_choice
+
+case $tool_choice in
+    1) install_docker ;;
+    2) install_kubectl ;;
+    3) install_ansible ;;
+    4) install_terraform ;;
+    5) install_jenkins ;;
+    6) install_awscli ;;
+    7) install_azurecli ;;
+    8) install_gcloud ;;
+    9) install_helm ;;
+    10) install_gitlab_runner ;;
+    11) install_vault ;;
+    12) install_consul ;;
+    13) install_packer ;;
+    14) install_infracost ;;
+    15) install_k9s ;;
+    16) install_minikube ;;
+    17) install_k3s ;;
+    18) install_vscodium ;;
+    10) install_postman ;;
+    20) install_all ;;
+    *) echo "Invalid choice, exiting." ;;
+esac
 
 # Function to VSCodium
 install_vscodium() {
@@ -159,29 +185,32 @@ install_helm() {
 
 # Function to install GitLab Runner
 install_gitlab_runner() {
-    curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
-    chmod +x /usr/local/bin/gitlab-runner
+    sudo curl -s https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
     echo "GitLab Runner installed successfully."
 }
 
 # Function to install HashiCorp Vault
 install_vault() {
-    sudo apt install zip -y
-    sudo curl -LO https://releases.hashicorp.com/vault/1.17.0/vault_1.17.0_linux_amd64.zip
-    sudo unzip vault_1.17.0_linux_amd64.zip
-    sudo mv vault /usr/local/bin/
-    sudo rm -f vault_1.17.0_linux_amd64.zip
+    wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+    sudo apt update && sudo apt install vault -y
     echo "HashiCorp Vault installed successfully."
 }
 
 # Function to install HashiCorp Consul
-install_consul() {
-    sudo apt install zip -y
-    sudo curl -LO https://releases.hashicorp.com/consul/1.19.2/consul_1.19.2_linux_amd64.zip
-    sudo unzip consul_1.19.2_linux_amd64.zip
-    sudo mv consul /usr/local/bin/
-    sudo rm -f consul_1.19.2_linux_amd64.zip
-    echo "HashiCorp Consul installed successfully."
+install_packer() {
+    wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+    sudo apt update && sudo apt install consul -y
+    echo "HashiCorp Packer installed successfully."
+}
+
+# Function to install HashiCorp Packer
+install_packer() {
+    sudo wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+    sudo apt update && sudo apt install packer -y
+    echo "HashiCorp Packer installed successfully."
 }
 
 # Function to install Infracost
@@ -218,49 +247,3 @@ install_all() {
     install_postman
     echo "All tools installed successfully."
 }
-
-# Main menu
-echo "Please select an option:"
-echo "1. Install Docker"
-echo "2. Install Kubernetes (kubectl)"
-echo "3. Install Ansible"
-echo "4. Install Terraform"
-echo "5. Install Jenkins"
-echo "6. Install AWS CLI"
-echo "7. Install Azure CLI"
-echo "8. Install Google Cloud SDK"
-echo "9. Install Helm"
-echo "12. Install GitLab Runner"
-echo "13. Install HashiCorp Vault"
-echo "14. Install HashiCorp Consul"
-echo "15. Install Infracost"
-echo "16. Install k9s"
-echo "17. Install minikube"
-echo "18. Install k3s"
-echo "19. Install VSCodium"
-echo "20. Install Postman"
-echo "21. Install ALL tools"
-read -p "Enter the number corresponding to your choice: " tool_choice
-
-case $tool_choice in
-    1) install_docker ;;
-    2) install_kubectl ;;
-    3) install_ansible ;;
-    4) install_terraform ;;
-    5) install_jenkins ;;
-    6) install_awscli ;;
-    7) install_azurecli ;;
-    8) install_gcloud ;;
-    9) install_helm ;;
-    12) install_gitlab_runner ;;
-    13) install_vault ;;
-    14) install_consul ;;
-    15) install_infracost ;;
-    16) install_k9s ;;
-    17) install_minikube ;;
-    18) install_k3s ;;
-    19) install_vscodium ;;
-    20) install_postman ;;
-    21) install_all ;;
-    *) echo "Invalid choice, exiting." ;;
-esac
