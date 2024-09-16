@@ -33,31 +33,8 @@ echo " 17 - k3s 🐍"
 echo " 18 - VS Codium 🗒️"
 echo " 19 - Postman 📮"
 echo " 20 - Install ALL tools"
+echo ""
 read -p "Enter the number corresponding to your choice: " tool_choice
-
-case $tool_choice in
-    1) install_docker ;;
-    2) install_kubectl ;;
-    3) install_ansible ;;
-    4) install_terraform ;;
-    5) install_jenkins ;;
-    6) install_awscli ;;
-    7) install_azurecli ;;
-    8) install_gcloud ;;
-    9) install_helm ;;
-    10) install_gitlab_runner ;;
-    11) install_vault ;;
-    12) install_consul ;;
-    13) install_packer ;;
-    14) install_infracost ;;
-    15) install_k9s ;;
-    16) install_minikube ;;
-    17) install_k3s ;;
-    18) install_vscodium ;;
-    10) install_postman ;;
-    20) install_all ;;
-    *) echo "Invalid choice, exiting." ;;
-esac
 
 # Function to VSCodium
 install_vscodium() {
@@ -247,3 +224,27 @@ install_all() {
     install_postman
     echo "All tools installed successfully."
 }
+
+case $tool_choice in
+    1) install_docker ;;
+    2) install_kubectl ;;
+    3) install_ansible ;;
+    4) install_terraform ;;
+    5) install_jenkins ;;
+    6) install_awscli ;;
+    7) install_azurecli ;;
+    8) install_gcloud ;;
+    9) install_helm ;;
+    10) install_gitlab_runner ;;
+    11) install_vault ;;
+    12) install_consul ;;
+    13) install_packer ;;
+    14) install_infracost ;;
+    15) install_k9s ;;
+    16) install_minikube ;;
+    17) install_k3s ;;
+    18) install_vscodium ;;
+    19) install_postman ;;
+    20) install_all ;;
+    *) echo "Invalid choice, exiting." ;;
+esac
