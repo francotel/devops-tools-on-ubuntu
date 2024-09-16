@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
       # Clona el repositorio
       git clone https://github.com/francotel/devops-tools-on-ubuntu.git /home/vagrant/devops-tools-on-ubuntu
       # Cambia los permisos del script para que sea ejecutable
-      chmod +x /home/vagrant/devops-tools-on-ubuntu/install_script.sh
+      chmod +x /home/vagrant/devops-tools-on-ubuntu/install-tools.sh
       echo "Repositorio clonado en /home/vagrant/devops-tools-on-ubuntu"
     SHELL
   end
