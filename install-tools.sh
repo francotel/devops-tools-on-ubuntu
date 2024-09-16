@@ -29,6 +29,7 @@ echo "  - Infracost 💰"
 echo "  - k9s 👀"
 echo "  - minikube 🏗️"
 echo "  - VS Codium 🗒️"
+echo "  - Postman 📮"
 echo "  - k3s 🐍"
 echo ""
 
@@ -169,7 +170,7 @@ install_vault() {
     sudo curl -LO https://releases.hashicorp.com/vault/1.17.0/vault_1.17.0_linux_amd64.zip
     sudo unzip vault_1.17.0_linux_amd64.zip
     sudo mv vault /usr/local/bin/
-    rm vault_1.17.0_linux_amd64.zip
+    sudo rm -f vault_1.17.0_linux_amd64.zip
     echo "HashiCorp Vault installed successfully."
 }
 
@@ -179,7 +180,7 @@ install_consul() {
     sudo curl -LO https://releases.hashicorp.com/consul/1.19.2/consul_1.19.2_linux_amd64.zip
     sudo unzip consul_1.19.2_linux_amd64.zip
     sudo mv consul /usr/local/bin/
-    rm consul_1.19.2_linux_amd64.zip
+    sudo rm -f consul_1.19.2_linux_amd64.zip
     echo "HashiCorp Consul installed successfully."
 }
 
@@ -188,6 +189,11 @@ install_infracost() {
     echo "Installing Infracost..."
     curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
     echo "Infracost installed successfully."
+}
+
+# Function to install Postman
+install_postman() {
+    sudo snap install postman
 }
 
 # Function to install all tools
@@ -209,6 +215,7 @@ install_all() {
     install_k9s
     install_minikube
     install_k3s
+    install_postman
     echo "All tools installed successfully."
 }
 
@@ -231,7 +238,8 @@ echo "16. Install k9s"
 echo "17. Install minikube"
 echo "18. Install k3s"
 echo "19. Install VSCodium"
-echo "20. Install ALL tools"
+echo "20. Install Postman"
+echo "21. Install ALL tools"
 read -p "Enter the number corresponding to your choice: " tool_choice
 
 case $tool_choice in
@@ -252,6 +260,7 @@ case $tool_choice in
     17) install_minikube ;;
     18) install_k3s ;;
     19) install_vscodium ;;
-    20) install_all ;;
+    20) install_postman ;;
+    21) install_all ;;
     *) echo "Invalid choice, exiting." ;;
 esac
