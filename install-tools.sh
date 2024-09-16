@@ -73,7 +73,6 @@ install_docker() {
 # Function to install k9s
 install_k9s() {
     sudo curl -sS https://webinstall.dev/k9s | bash
-    sudo mv k9s /usr/local/bin/
     echo "k9s installed successfully."
 }
 
@@ -81,7 +80,7 @@ install_k9s() {
 install_minikube() {
     sudo curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
     sudo install minikube-linux-amd64 /usr/local/bin/minikube
-    rm minikube-linux-amd64
+    sudo rm -f minikube-linux-amd64
     echo "minikube installed successfully."
 }
 
@@ -169,15 +168,15 @@ install_gitlab_runner() {
 # Function to install HashiCorp Vault
 install_vault() {
     wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee > /etc/apt/sources.list.d/hashicorp.list
     sudo apt update && sudo apt install vault -y
     echo "HashiCorp Vault installed successfully."
 }
 
 # Function to install HashiCorp Consul
-install_packer() {
+install_consul() {
     wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee > /etc/apt/sources.list.d/hashicorp.list
     sudo apt update && sudo apt install consul -y
     echo "HashiCorp Packer installed successfully."
 }
@@ -185,7 +184,7 @@ install_packer() {
 # Function to install HashiCorp Packer
 install_packer() {
     sudo wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee > /etc/apt/sources.list.d/hashicorp.list
     sudo apt update && sudo apt install packer -y
     echo "HashiCorp Packer installed successfully."
 }
