@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
     # config.vm.network "forwarded_port", guest: 22, host: 2222 # SSH
     # config.vm.network "forwarded_port", guest: 80, host: 8080 # HTTP
 
-    config.vm.network "public_network", bridge: "en0" # Cambia esto por el nombre correcto de tu interfaz de red
+    config.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)" # Cambia esto por el nombre correcto de tu interfaz de red
 
     # Configura el script de provisión
     config.vm.provision "shell", inline: <<-SHELL
@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
 
       sudo groupadd docker 2>/dev/null  # Create the docker group if it doesn't exist (ignores error if already exists)
       sudo usermod -aG docker $USER     # Add the current user to the docker group
-      
+
     SHELL
   end
   
