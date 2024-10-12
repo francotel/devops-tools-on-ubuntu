@@ -73,7 +73,7 @@ install_docker() {
 
     # Determina la arquitectura del sistema
     ARCH=\$(uname -m)
-    case \$ARCH in
+    case "\$ARCH" in
         i386|i686) ARCH=x86 ;;
         armv6*) ARCH=armv6 ;;
         armv7*) ARCH=armv7 ;;
