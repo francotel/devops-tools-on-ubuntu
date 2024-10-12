@@ -5,9 +5,11 @@ Vagrant.configure("2") do |config|
     config.vm.box = "bento/ubuntu-24.04"
   
     # Configura la red y los recursos de la máquina virtual
-    config.vm.network "forwarded_port", guest: 22, host: 2222 # SSH
-    config.vm.network "forwarded_port", guest: 80, host: 8080 # HTTP
-  
+    # config.vm.network "forwarded_port", guest: 22, host: 2222 # SSH
+    # config.vm.network "forwarded_port", guest: 80, host: 8080 # HTTP
+
+    config.vm.network "public_network", bridge: "en0" # Cambia esto por el nombre correcto de tu interfaz de red
+
     # Configura el script de provisión
     config.vm.provision "shell", inline: <<-SHELL
       # Clona el repositorio
@@ -15,6 +17,10 @@ Vagrant.configure("2") do |config|
       # Cambia los permisos del script para que sea ejecutable
       chmod +x /home/vagrant/devops-tools-on-ubuntu/install-tools.sh
       echo "Repositorio clonado en /home/vagrant/devops-tools-on-ubuntu"
+
+      sudo groupadd docker 2>/dev/null  # Create the docker group if it doesn't exist (ignores error if already exists)
+      sudo usermod -aG docker $USER     # Add the current user to the docker group
+      
     SHELL
   end
   
