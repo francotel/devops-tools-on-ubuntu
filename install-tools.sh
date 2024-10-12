@@ -65,6 +65,10 @@ install_docker() {
     sudo systemctl start docker
     sudo systemctl enable docker
 
+    # Add the current user to the docker group
+    sudo groupadd docker 2>/dev/null  # Create the docker group if it doesn't exist (ignores error if already exists)
+    sudo usermod -aG docker $USER     # Add the current user to the docker group
+
     echo "Docker installed successfully."
 }
 
