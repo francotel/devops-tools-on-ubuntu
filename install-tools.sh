@@ -13,7 +13,7 @@ echo "Automate the installation of essential DevOps tools on your Ubuntu machine
 echo "Choose from a wide range of tools and get started quickly and easily."
 echo ""
 echo "Tools available for installation:"
-echo " 1 - Docker + Docker Desktop 🐳"
+echo " 1 - Docker + LazyDocker 🐳"
 echo " 2 - Kubernetes (kubectl) ☸️"
 echo " 3 - Ansible 📜"
 echo " 4 - Terraform 🌍"
@@ -65,13 +65,13 @@ install_docker() {
     sudo systemctl start docker
     sudo systemctl enable docker
 
-    # Add the current user to the docker group
-    #sudo groupadd docker 2>/dev/null  # Create the docker group if it doesn't exist (ignores error if already exists)
-    #sudo usermod -aG docker $USER     # Add the current user to the docker group
+    # Agrega el usuario actual al grupo docker
+    sudo usermod -aG docker $USER
 
-    sudo curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+    # Usa newgrp para evitar tener que hacer logout y login
+    newgrp docker < sudo curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
-    echo "Docker installed successfully."
+    echo "Docker ha sido instalado y LazyDocker ha sido configurado correctamente."
 }
 
 # Function to install k9s

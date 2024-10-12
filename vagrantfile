@@ -18,9 +18,8 @@ Vagrant.configure("2") do |config|
       chmod +x /home/vagrant/devops-tools-on-ubuntu/install-tools.sh
       echo "Repositorio clonado en /home/vagrant/devops-tools-on-ubuntu"
 
-      sudo groupadd docker 2>/dev/null  # Create the docker group if it doesn't exist (ignores error if already exists)
-      sudo usermod -aG docker $USER     # Add the current user to the docker group
-
+      #sudo groupadd docker 2>/dev/null  # Create the docker group if it doesn't exist (ignores error if already exists)
+      #sudo usermod -aG docker $USER     # Add the current user to the docker group =end
     SHELL
   end
   
