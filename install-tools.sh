@@ -69,7 +69,9 @@ install_docker() {
     sudo usermod -aG docker $USER
 
     # Usa newgrp para evitar tener que hacer logout y login
-    newgrp docker < sudo curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+    newgrp docker << EOF
+    curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+EOF
 
     echo "Docker ha sido instalado y LazyDocker ha sido configurado correctamente."
 }
