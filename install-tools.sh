@@ -66,11 +66,11 @@ install_docker() {
     sudo systemctl enable docker
 
     # Add the current user to the docker group
-    sudo groupadd docker 2>/dev/null  # Create the docker group if it doesn't exist (ignores error if already exists)
-    sudo usermod -aG docker $USER     # Add the current user to the docker group
+    #sudo groupadd docker 2>/dev/null  # Create the docker group if it doesn't exist (ignores error if already exists)
+    #sudo usermod -aG docker $USER     # Add the current user to the docker group
 
     sudo curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
-    
+
     echo "Docker installed successfully."
 }
 
