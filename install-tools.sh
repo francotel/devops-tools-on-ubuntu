@@ -13,7 +13,7 @@ echo "Automate the installation of essential DevOps tools on your Ubuntu machine
 echo "Choose from a wide range of tools and get started quickly and easily."
 echo ""
 echo "Tools available for installation:"
-echo " 1 - Docker 🐳"
+echo " 1 - Docker + Docker Desktop 🐳"
 echo " 2 - Kubernetes (kubectl) ☸️"
 echo " 3 - Ansible 📜"
 echo " 4 - Terraform 🌍"
@@ -69,6 +69,8 @@ install_docker() {
     sudo groupadd docker 2>/dev/null  # Create the docker group if it doesn't exist (ignores error if already exists)
     sudo usermod -aG docker $USER     # Add the current user to the docker group
 
+    sudo curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+    
     echo "Docker installed successfully."
 }
 
