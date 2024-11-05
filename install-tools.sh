@@ -222,7 +222,9 @@ install_postman() {
 
 install_virtualbox() {
     # Add VirtualBox repository key
-    wget -q -O - http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc | sudo apt-key add -
+    #wget -q -O - http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc | sudo apt-key add -
+    wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --dearmor --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg
+
 
     # Add VirtualBox repository to sources list
     sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian raring non-free contrib" >> /etc/apt/sources.list.d/virtualbox.org.list'
@@ -240,6 +242,7 @@ install_virtualbox() {
 
     # Download and install the extension pack for the installed version
     wget -O ~/Downloads/Oracle_VM_VirtualBox_Extension_Pack-$INSTALLED_VER.vbox-extpack http://download.virtualbox.org/virtualbox/$INSTALLED_VER/Oracle_VM_VirtualBox_Extension_Pack-$INSTALLED_VER.vbox-extpack
+    echo "virtualbox extpack"
     sudo vboxmanage extpack install ~/Downloads/Oracle_VM_VirtualBox_Extension_Pack-$INSTALLED_VER.vbox-extpack
 
     echo "You must log out and log back in for user group changes to take effect."
