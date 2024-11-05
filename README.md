@@ -21,13 +21,27 @@ This repository contains a Bash script (`install_tools.sh`) that installs popula
 
 The script installs the following DevOps tools:
 
-- 🐳 **Docker**: Containerization platform
-- ☸️ **Kubernetes (kubectl)**: Command-line tool for controlling Kubernetes clusters
-- 📦 **Ansible**: Configuration management tool
-- 🌍 **Terraform**: Infrastructure as code software
-- ⚙️ **Jenkins**: Automation server for CI/CD
-- 🔧 **Git**: Version control system
-- 🟢 **Node.js**: JavaScript runtime (optional for some DevOps workflows)
+- 🐳 **Docker + LazyDocker** - Platform for containerization  
+- ☸️ **Kubernetes (kubectl)** - Command-line tool to control Kubernetes clusters  
+- 📜 **Ansible** - Configuration management tool  
+- 🌍 **Terraform** - Infrastructure as code software  
+- ⚙️ **Jenkins** - Automation server for CI/CD  
+- 🟢 **Node.js** - JavaScript runtime (optional for certain DevOps workflows)  
+- ☁️ **AWS CLI** - Command-line interface for AWS  
+- ☁️ **Azure CLI** - Command-line interface for Azure  
+- ☁️ **Google Cloud SDK** - Google Cloud Platform SDK  
+- ⛵ **Helm** - Package manager for Kubernetes  
+- 🏃‍♂️ **GitLab Runner** - CI/CD executor for GitLab  
+- 🔐 **HashiCorp Vault** - Secrets manager  
+- 🌐 **HashiCorp Consul** - Service mesh and service discovery  
+- 💿 **HashiCorp Packer** - Automated image creation tool  
+- 💰 **Infracost** - Infrastructure cost estimation  
+- 👀 **k9s** - TUI interface for Kubernetes  
+- 🏗️ **minikube** - Local Kubernetes cluster  
+- 🐍 **k3s** - Lightweight Kubernetes distribution  
+- 🗒️ **VS Codium** - Code editor  
+- 📮 **Postman** - API platform  
+- 🛠️ **Vagrant** - Virtual machine manager  
 
 You can customize the script to include or exclude specific tools as per your needs.
 
