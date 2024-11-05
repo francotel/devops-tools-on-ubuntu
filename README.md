@@ -26,7 +26,6 @@ The script installs the following DevOps tools:
 - 📜 **Ansible** - Configuration management tool  
 - 🌍 **Terraform** - Infrastructure as code software  
 - ⚙️ **Jenkins** - Automation server for CI/CD  
-- 🟢 **Node.js** - JavaScript runtime (optional for certain DevOps workflows)  
 - ☁️ **AWS CLI** - Command-line interface for AWS  
 - ☁️ **Azure CLI** - Command-line interface for Azure  
 - ☁️ **Google Cloud SDK** - Google Cloud Platform SDK  
