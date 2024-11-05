@@ -40,7 +40,8 @@ The script installs the following DevOps tools:
 - 🐍 **k3s** - Lightweight Kubernetes distribution  
 - 🗒️ **VS Codium** - Code editor  
 - 📮 **Postman** - API platform  
-- 🛠️ **Vagrant** - Virtual machine manager  
+- 🛠️ **Vagrant** - Virtual machine manager
+- 💿 **VirtualBox** - Virtual Box
 
 You can customize the script to include or exclude specific tools as per your needs.
 
