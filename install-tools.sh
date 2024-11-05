@@ -32,7 +32,8 @@ echo " 16 - minikube 🏗️"
 echo " 17 - k3s 🐍"
 echo " 18 - VS Codium 🗒️"
 echo " 19 - Postman 📮"
-echo " 20 - Install ALL tools"
+echo " 20 - VirtualBox 💿"
+echo " 21 - Install ALL tools"
 echo ""
 read -p "Enter the number corresponding to your choice: " tool_choice
 
@@ -219,9 +220,35 @@ install_postman() {
     sudo snap install postman
 }
 
+install_virtualbox() {
+    # Add VirtualBox repository key
+    wget -q -O - http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc | sudo apt-key add -
+
+    # Add VirtualBox repository to sources list
+    sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian raring non-free contrib" >> /etc/apt/sources.list.d/virtualbox.org.list'
+
+    # Update package list and install specified VirtualBox version
+    sudo apt-get update
+    sudo apt-get install -y virtualbox
+
+    # Add current user to vboxusers group
+    sudo usermod -a -G vboxusers $(whoami)
+
+    # Get the installed VirtualBox version
+    INSTALLED_VER=$(vboxmanage --version)
+    INSTALLED_VER=${INSTALLED_VER%%r*}
+
+    # Download and install the extension pack for the installed version
+    wget -O ~/Downloads/Oracle_VM_VirtualBox_Extension_Pack-$INSTALLED_VER.vbox-extpack http://download.virtualbox.org/virtualbox/$INSTALLED_VER/Oracle_VM_VirtualBox_Extension_Pack-$INSTALLED_VER.vbox-extpack
+    sudo vboxmanage extpack install ~/Downloads/Oracle_VM_VirtualBox_Extension_Pack-$INSTALLED_VER.vbox-extpack
+
+    echo "You must log out and log back in for user group changes to take effect."
+}
+
 # Function to install all tools
 install_all() {
     install_vscodium
+    install_virtualbox
     install_docker
     install_kubectl
     install_ansible
@@ -262,6 +289,7 @@ case $tool_choice in
     17) install_k3s ;;
     18) install_vscodium ;;
     19) install_postman ;;
-    20) install_all ;;
+    20) install_virtualbox ;;
+    21) install_all ;;
     *) echo "Invalid choice, exiting." ;;
 esac
